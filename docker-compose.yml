@@ -1,0 +1,22 @@
+version: '3'
+
+# define the network
+networks:
+  fpm:
+
+services:
+  nginx:
+    image: mikrowerk/nginx:1.19-alpine
+    ports:
+      - "80:80"
+    networks:
+      - fpm
+    volumes:
+      - ./www/html:/var/www/html
+
+  php-fpm:
+    image: mikrowerk/php-fpm:7.4
+    networks:
+      - fpm
+    volumes:
+      - ./www/html:/var/www/html
