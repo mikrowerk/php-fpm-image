@@ -1,0 +1,1 @@
+docker build -t mikrowerk/php-fpm:7.4 .
