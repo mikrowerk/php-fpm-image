@@ -12,11 +12,31 @@ services:
     networks:
       - fpm
     volumes:
-      - ./www/html:/var/www/html
+      - type: volume
+        source: codeshare
+        target: /var/www/html
+        volume:
+          nocopy: true
 
   php-fpm:
     image: mikrowerk/php-fpm:7.4
     networks:
       - fpm
     volumes:
-      - ./www/html:/var/www/html
+      - type: volume
+        source: codeshare
+        target: /var/www/html
+        volume:
+          nocopy: true
+
+  codebox:
+    image: mikrowerk/codebox:latest
+    networks:
+      - fpm
+    volumes:
+      - type: volume
+        source: codeshare
+        target: /var/www/html
+
+volumes:
+  codeshare:
