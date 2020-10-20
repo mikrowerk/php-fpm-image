@@ -5,6 +5,17 @@ networks:
   fpm:
 
 services:
+  codebox:
+    image: mikrowerk/codebox:latest
+    networks:
+      - fpm
+    volumes:
+      - type: volume
+        source: codeshare
+        target: /var/www/html
+        volume:
+          nocopy: true
+
   nginx:
     image: mikrowerk/nginx:1.19-alpine
     ports:
@@ -29,14 +40,7 @@ services:
         volume:
           nocopy: true
 
-  codebox:
-    image: mikrowerk/codebox:latest
-    networks:
-      - fpm
-    volumes:
-      - type: volume
-        source: codeshare
-        target: /var/www/html
+
 
 volumes:
   codeshare:
