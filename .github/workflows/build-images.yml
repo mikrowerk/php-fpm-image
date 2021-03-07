@@ -16,7 +16,8 @@ jobs:
         uses: mr-smithers-excellent/docker-build-push@v5
         with:
           directory: ./php-fpm
-          image: mikrowerk/php-fpm
+          dockerfile: ./php-fpm/Dockerfile
+          image: php-fpm
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.PAT_GHCR }}
