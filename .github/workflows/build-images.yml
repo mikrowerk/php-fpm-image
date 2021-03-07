@@ -7,18 +7,17 @@ on:
   
 jobs:
   push_to_registry:
-    name: Push Docker image to GitHub Packages
+    name: Build & Push Docker image to GitHub container registry
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
       - name: build and push docker image for php-fpm
-        uses: docker/build-push-action@v1
+        uses: mr-smithers-excellent/docker-build-push@v5
         with:
-          context: ./php-fpm
-          file: ./php-fpm/Dockerfile
+          directory: ./php-fpm
+          image: mikrowerk/php-fpm
+          registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.PAT_GHCR }}
-          registry: ghcr.io
-          repository: mikrowerk/php-fpm
           tags: ${{ github.sha }}
