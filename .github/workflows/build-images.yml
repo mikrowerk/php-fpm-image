@@ -16,7 +16,7 @@ jobs:
         uses: docker/build-push-action@v1
         with:
           context: ./php-fpm
-          dockerfile: ./php-fpm/Dockerfile
+          file: ./php-fpm/Dockerfile
           username: ${{ github.actor }}
           password: ${{ secrets.PAT_GHCR }}
           registry: ghcr.io
