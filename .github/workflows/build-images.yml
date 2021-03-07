@@ -13,9 +13,10 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v2
       - name: build and push docker image for php-fpm
-        uses: docker/build-push-action@v1
+        uses: docker/build-push-action@v2.3.0
         with:
           context: ./php-fpm
+          file: ./php-fpm/Dockerfile
           username: ${{ github.actor }}
           password: ${{ secrets.PAT_GHCR }}
           registry: ghcr.io
