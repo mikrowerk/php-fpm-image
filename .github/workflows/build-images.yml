@@ -22,3 +22,14 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.PAT_GHCR }}
           tags: ${{ github.sha }},latest
+          
+      - name: build and push docker image for nginx-alpine
+        uses: mr-smithers-excellent/docker-build-push@v5
+        with:
+          directory: ./nginx-alpine
+          dockerfile: ./nginx-alpine/Dockerfile
+          image: nginx-alpine
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.PAT_GHCR }}
+          tags: ${{ github.sha }},latest
