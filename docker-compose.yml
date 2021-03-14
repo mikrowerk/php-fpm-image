@@ -1,46 +1,19 @@
 version: '3'
+#this version doesn't use shared volumes
 
 # define the network
 networks:
   fpm:
 
 services:
-  codebox:
-    image: mikrowerk/codebox:latest
-    networks:
-      - fpm
-    volumes:
-      - type: volume
-        source: codeshare
-        target: /var/www/html
-        volume:
-          nocopy: true
-
   nginx:
-    image: mikrowerk/nginx:1.19-alpine
+    image: mikrowerk/nginx:1.19-alpine:latest
     ports:
       - "80:80"
     networks:
       - fpm
-    volumes:
-      - type: volume
-        source: codeshare
-        target: /var/www/html
-        volume:
-          nocopy: true
 
   php-fpm:
-    image: mikrowerk/php-fpm:7.4
+    image: mikrowerk/php-fpm:7.4:latest
     networks:
       - fpm
-    volumes:
-      - type: volume
-        source: codeshare
-        target: /var/www/html
-        volume:
-          nocopy: true
-
-
-
-volumes:
-  codeshare:
